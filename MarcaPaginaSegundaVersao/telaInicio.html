@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MarcaPaginas</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Isometra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Isometra&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #fff8e7;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #contorno {
+            background-color: #f8ccd7;
+        }
+        
+        #nome {
+            font-family: "Isometra", serif;
+            color: #751020;
+        }
+        
+        .navbar {
+            padding: 0;
+        }
+        
+        .navbar .container-fluid {
+            padding: 10px 20px;
+        }
+        
+        #titulo {
+            color: #751020;
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 30px;
+            font-family: "Isometra", serif;
+        }
+        
+        #livrosLendoInicio {
+            width: 500px;
+            max-width: 90%;
+            margin-left: 70px;
+            background-color: white;
+            border: 2px solid #751020;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        #informacoesLivro {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .imagemLivro {
+            width: 130px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        #detalhesLivro p {
+            margin-bottom: 12px;
+        }
+        
+        #progressoLivro {
+            margin-top: 20px;
+            height: 20px;
+            background-color: #f1dfd1;
+        }
+        
+        #progressoLivro .progress-bar {
+            background-color: #99182a;
+        }
+        
+        @media (max-width: 400px) {
+            #informacoesLivro {
+                gap: 12px;
+            }
+            #imagemLivro {
+                width: 100px;
+                height: 150px;
+            }
+        }
+        
+        #queroLerInicio {
+            width: 500px;
+            max-width: 90%;
+            margin-left: 70px;
+            background-color: white;
+            border: 2px solid #751020;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        #livrosPopulares {
+            width: 500px;
+            padding: 20px;
+            margin-left: 70px;
+            background-color: white;
+            border: 2px solid #751020;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="contorno">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" id="nome">MarcaPaginas</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Início</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Comunidades</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Grupos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Minha biblioteca</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <h3 id="titulo">Seja bem-vindo!</h3>
+
+        <div id="livrosLendoInicio">
+
+            <div id="informacoesLivro">
+
+                <img src="livro.jpg" class="imagemLivro">
+
+                <div id="detalhesLivro">
+                    <p><strong>Nome:</strong></p>
+                    <p><strong>Autor:</strong> </p>
+                    <p><strong>Número de páginas:</strong> </p>
+                </div>
+
+            </div>
+
+            <div class="progress" id="progressoLivro" role="progressbar" aria-label="Progresso de leitura" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+
+                <div class="progress-bar" style="width: 75%">75%</div>
+            </div>
+
+        </div>
+        <br><br>
+        <div id="queroLerInicio">
+            <p style="color: #751020;"><strong>Quero Ler</strong></p>
+            <img src="livro.jpg" class="imagemLivro">
+
+
+        </div>
+        <br><br>
+        <div id="livrosPopulares">
+            <p style="color: #751020;"><strong>Livros populares</strong></p>
+            <img src="livro.jpg" class="imagemLivro">
+
+
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+</html>
