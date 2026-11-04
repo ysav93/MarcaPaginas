@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastrar Usuário</title>
+    <title>Cadastrar Livro</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -126,25 +126,25 @@
     <!-- Título da página -->
 
     <div id="cabecalhoCadastro">
-        <h3 id="titulo">Cadastrar Usuário</h3>
+        <h3 id="titulo">Cadastrar Usuario</h3>
     </div>
 
     <!-- Formulário de cadastro -->
 
-    <form id="formulario">
+    <form id="formulario" onsubmit="entrar(event)">
 
         <div class="mb-4">
             <label for="tituloLivro" class="form-label">
-                Nome do Usuário:
+                Nome do Usuario:
             </label>
 
-            <input type="text" class="form-control" id="tituloLivro" name="tituloLivro" placeholder="Digite o nome do usuário" required>
+            <input type="text" class="form-control" id="tituloLivro" name="tituloLivro" placeholder="Digite o nome do usuario" required>
         </div>
 
 
         <div class="mb-4">
             <label for="autor" class="form-label">
-                Email do usuário:
+                Email do usuario:
             </label>
 
             <input type="text" class="form-control" id="autor" name="autor" placeholder="Digite seu email" required>
@@ -154,6 +154,9 @@
             <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" required>
         </div>
 
+
+
+
         <div id="botaoCadastrar">
             <button type="submit" class="botoes" onclick="entrar()">
                 Cadastrar
@@ -162,8 +165,10 @@
 
     </form>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script >
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <script>
         function entrar(event) {
             event.preventDefault();
             window.location.href = "telaInicio.html";
