@@ -61,7 +61,7 @@
     <div id="quadrado">
         <h3 class="text-center mb-4" id="titulo">MarcaPáginas</h3>
 
-        <form>
+        <form onsubmit="entrar(event)">
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" required>
@@ -76,14 +76,22 @@
                 Entrar
             </button>
         </form>
+
     </div>
+    <br>
+    <li class="nav-item">
+        <a class="nav-link" href="cadastrarUsuario.html" style="color: #751020;">Cadastrar usuario</a>
+    </li>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-        function entrar() {
+    </script>
+    <script>
+        function entrar(event) {
+            event.preventDefault();
             window.location.href = "telaInicio.html";
         }
     </script>
-
 </body>
 
+</html>
 </html>
