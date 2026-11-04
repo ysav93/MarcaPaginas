@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Comunidades</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Isometra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #fff8e7;
+            margin: 0;
+            padding: 0;
+            color: #751020;
+            font-family: Arial, sans-serif;
+        }
+        /* Barra de navegação principal */
+        
+        #contorno {
+            background-color: #f8ccd7;
+            border-bottom: 2px solid #751020;
+        }
+        
+        .navbar {
+            padding: 0;
+        }
+        
+        .navbar .container-fluid {
+            padding: 10px 25px;
+        }
+        
+        #nome {
+            font-family: "Isometra", serif;
+            color: #751020;
+            font-size: 25px;
+        }
+        
+        .navbar .nav-link {
+            color: #751020;
+        }
+        
+        .navbar .nav-link:hover {
+            color: #a8324a;
+        }
+        /* Área principal */
+        
+        #paginaComunidades {
+            display: flex;
+            gap: 25px;
+            max-width: 1400px;
+            margin: 100px auto 30px;
+            padding: 0 25px;
+            min-height: 75vh;
+        }
+        /* Lista lateral de comunidades */
+        
+        #lateralComunidades {
+            width: 280px;
+            min-width: 240px;
+            background-color: white;
+            border: 2px solid #751020;
+            border-radius: 15px;
+            overflow: hidden;
+            align-self: flex-start;
+        }
+        
+        #cabecalhoComunidades {
+            background-color: #f8ccd7;
+            padding: 18px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #751020;
+            gap: 10px;
+        }
+        
+        #cabecalhoComunidades h2 {
+            font-family: "Isometra", serif;
+            font-size: 20px;
+            margin: 0;
+        }
+        /* Botão de criar comunidade */
+        
+        #botaoAdicionar {
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
+            border: 2px solid #751020;
+            border-radius: 50%;
+            background-color: #fff8e7;
+            color: #751020;
+            font-size: 27px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        
+        #botaoAdicionar:hover {
+            background-color: #751020;
+            color: white;
+        }
+        /* Botões das comunidades */
+        
+        #listaComunidades {
+            padding: 10px;
+        }
+        
+        .comunidade {
+            width: 100%;
+            display: block;
+            text-align: left;
+            padding: 14px 12px;
+            margin-bottom: 6px;
+            border: none;
+            border-radius: 10px;
+            background-color: transparent;
+            color: #751020;
+            cursor: pointer;
+            transition: 0.2s;
+            overflow-wrap: anywhere;
+        }
+        
+        .comunidade:hover {
+            background-color: #fff0f3;
+        }
+        
+        .comunidade.ativa {
+            background-color: #f8ccd7;
+            font-weight: bold;
+            border-left: 4px solid #751020;
+        }
+        
+        .iconeComunidade {
+            display: inline-flex;
+            width: 35px;
+            height: 35px;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            background-color: #fff8e7;
+            border-radius: 50%;
+            font-size: 17px;
+            vertical-align: middle;
+        }
+        /* Área do chat */
+        
+        #areaChat {
+            flex: 1;
+            min-width: 0;
+            background-color: white;
+            border: 2px solid #751020;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 550px;
+        }
+        /* Cabeçalho do chat */
+        
+        #cabecalhoChat {
+            background-color: #f8ccd7;
+            padding: 18px 22px;
+            border-bottom: 2px solid #751020;
+        }
+        
+        #nomeComunidade {
+            font-family: "Isometra", serif;
+            font-size: 25px;
+            margin: 0;
+            overflow-wrap: anywhere;
+        }
+        
+        #descricaoComunidade {
+            margin: 5px 0 0;
+            font-size: 13px;
+            color: #751020;
+        }
+        /* Mensagens */
+        
+        #mensagens {
+            flex: 1;
+            min-height: 350px;
+            max-height: 600px;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-color: #fffdf9;
+        }
+        
+        .mensagem {
+            max-width: 80%;
+            display: flex;
+            flex-direction: column;
+            overflow-wrap: anywhere;
+        }
+        
+        .mensagem.recebida {
+            align-self: flex-start;
+        }
+        
+        .mensagem.enviada {
+            align-self: flex-end;
+        }
+        
+        .autorMensagem {
+            font-size: 12px;
+            color: #751020;
+            margin: 0 8px 5px;
+            font-weight: bold;
+        }
+        
+        .textoMensagem {
+            padding: 12px 15px;
+            margin: 0;
+            border-radius: 15px;
+            color: #3d2529;
+            line-height: 1.5;
+        }
+        
+        .recebida .textoMensagem {
+            background-color: #f1dfd1;
+            border-bottom-left-radius: 3px;
+        }
+        
+        .enviada .textoMensagem {
+            background-color: #f8ccd7;
+            border-bottom-right-radius: 3px;
+        }
+        
+        .horarioMensagem {
+            font-size: 10px;
+            color: #8b6b70;
+            margin: 4px 8px 0;
+        }
+        /* Campo para enviar mensagens */
+        
+        #formularioMensagem {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background-color: white;
+            border-top: 1px solid #e7c4ca;
+        }
+        
+        #campoMensagem {
+            flex: 1;
+            min-width: 0;
+            border: 1px solid #d9a3ae;
+            border-radius: 25px;
+            background-color: #fffdf9;
+            padding: 12px 18px;
+            outline: none;
+        }
+        
+        #campoMensagem:focus {
+            border-color: #751020;
+            box-shadow: 0 0 0 3px rgba(248, 204, 215, 0.5);
+        }
+        
+        #botaoEnviar {
+            padding: 11px 22px;
+            border: 2px solid #751020;
+            border-radius: 25px;
+            background-color: #f8ccd7;
+            color: #751020;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        #botaoEnviar:hover {
+            background-color: #751020;
+            color: white;
+        }
+        
+        .mensagemVazia {
+            text-align: center;
+            color: #9b737b;
+            margin: auto;
+            padding: 20px;
+        }
+        /* Ajustes para telas menores */
+        
+        @media (max-width: 768px) {
+            #paginaComunidades {
+                flex-direction: column;
+                margin-top: 90px;
+                padding: 0 15px;
+                gap: 15px;
+            }
+            #lateralComunidades {
+                width: 100%;
+                min-width: 0;
+            }
+            #listaComunidades {
+                display: flex;
+                gap: 8px;
+                overflow-x: auto;
+            }
+            .comunidade {
+                width: auto;
+                min-width: 155px;
+                margin-bottom: 0;
+                white-space: nowrap;
+            }
+            #areaChat {
+                width: 100%;
+                min-height: 500px;
+            }
+            #mensagens {
+                min-height: 300px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            #nomeComunidade {
+                font-size: 21px;
+            }
+            #cabecalhoChat {
+                padding: 15px;
+            }
+            #mensagens {
+                padding: 12px;
+            }
+            #formularioMensagem {
+                padding: 10px;
+                gap: 6px;
+            }
+            #botaoEnviar {
+                padding: 10px 13px;
+            }
+        }
+        /* Barra de pesquisa */
+        
+        #barraPesquisa {
+            background-color: #fff8e7;
+            padding: 20px 30px;
+            margin-top: 65px;
+        }
+        /* Formulário */
+        
+        #barraPesquisa form {
+            max-width: 600px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+        /* Campo de pesquisa */
+        
+        #barraPesquisa .form-control {
+            border: 2px solid #f8ccd7;
+            border-radius: 25px;
+            background-color: white;
+            color: #751020;
+            padding: 12px 18px;
+            box-shadow: none;
+        }
+        /* Texto do campo */
+        
+        #barraPesquisa .form-control::placeholder {
+            color: #9b737b;
+        }
+        /* Efeito ao clicar no campo */
+        
+        #barraPesquisa .form-control:focus {
+            border-color: #751020;
+            box-shadow: 0 0 5px #f8ccd7;
+        }
+        /* Botão de pesquisa */
+        
+        .botaoPesquisa {
+            background-color: #f8ccd7;
+            color: #751020;
+            border: 2px solid #751020;
+            border-radius: 25px;
+            padding: 10px 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-family: "Isometra", serif;
+        }
+        /* Efeito ao passar o mouse */
+        
+        .botaoPesquisa:hover {
+            background-color: #751020;
+            color: white;
+        }
+        /* Ajustes para celular */
+        
+        @media (max-width: 500px) {
+            #barraPesquisa {
+                padding: 15px;
+            }
+            #barraPesquisa form {
+                gap: 8px;
+            }
+            .botaoPesquisa {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navegação principal -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="contorno">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="#" id="nome">
+                MarcaPaginas
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="telaInicio.html">Início</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="comunidades.html">Comunidades</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Grupos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="minhaBiblioteca.html">Minha biblioteca</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <nav id="barraPesquisa">
+        <div class="container-fluid">
+            <form class="d-flex" role="search">
+                <input class="form-control" type="search" placeholder="Pesquisar livros..." aria-label="Pesquisar livros">
+
+                <button class="botaoPesquisa" type="submit">
+                Pesquisar
+            </button>
+            </form>
+        </div>
+    </nav>
+
+
+    <!-- Página de comunidades -->
+    <main id="paginaComunidades">
+
+        <!-- Barra lateral -->
+        <aside id="lateralComunidades">
+
+            <div id="cabecalhoComunidades">
+                <h2>Comunidades</h2>
+
+                <button type="button" id="botaoAdicionar" title="Criar nova comunidade" aria-label="Criar nova comunidade" onclick="criar()">
+                    +
+                </button>
+            </div>
+
+            <div id="listaComunidades">
+
+                <button type="button" class="comunidade ativa" data-nome="Clube do Livro">
+                    <span class="iconeComunidade"></span>
+                    Clube do Livro
+                </button>
+
+                <button type="button" class="comunidade" data-nome="Romances">
+                    <span class="iconeComunidade"></span>
+                    Romances
+                </button>
+
+                <button type="button" class="comunidade" data-nome="Fantasia e Magia">
+                    <span class="iconeComunidade"></span>
+                    Fantasia e Magia
+                </button>
+
+                <button type="button" class="comunidade" data-nome="Leitores IFMG">
+                    <span class="iconeComunidade"></span>
+                    Leitores IFMG
+                </button>
+
+            </div>
+
+        </aside>
+
+        <!-- Conversa -->
+        <section id="areaChat">
+
+            <header id="cabecalhoChat">
+                <h1 id="nomeComunidade">Clube do Livro</h1>
+                <p id="descricaoComunidade">
+                    Compartilhe suas leituras e converse com outros leitores.
+                </p>
+            </header>
+
+            <div id="mensagens" aria-live="polite">
+
+                <div class="mensagem recebida">
+                    <span class="autorMensagem">Mariana</span>
+                    <p class="textoMensagem">
+                        Oi, pessoal! Qual livro vocês estão lendo atualmente?
+                    </p>
+                    <span class="horarioMensagem">14:30</span>
+                </div>
+
+                <div class="mensagem enviada">
+                    <span class="autorMensagem">Você</span>
+                    <p class="textoMensagem">
+                        Estou lendo um romance e adorando a história!
+                    </p>
+                    <span class="horarioMensagem">14:32</span>
+                </div>
+
+                <div class="mensagem recebida">
+                    <span class="autorMensagem">Lucas</span>
+                    <p class="textoMensagem">
+                        Que legal! Depois compartilha o nome com a gente.
+                    </p>
+                    <span class="horarioMensagem">14:35</span>
+                </div>
+
+            </div>
+
+            <!-- Campo de envio -->
+            <form id="formularioMensagem">
+
+                <input type="text" id="campoMensagem" placeholder="Escreva uma mensagem..." aria-label="Escreva uma mensagem" autocomplete="off" required>
+
+                <button type="submit" id="botaoEnviar">
+                    Enviar
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script>
+        const listaComunidades = document.getElementById("listaComunidades");
+        const nomeComunidade = document.getElementById("nomeComunidade");
+        const mensagens = document.getElementById("mensagens");
+        const formularioMensagem = document.getElementById("formularioMensagem");
+        const campoMensagem = document.getElementById("campoMensagem");
+        const botaoAdicionar = document.getElementById("botaoAdicionar");
+
+        // Trocar de comunidade
+        listaComunidades.addEventListener("click", function(event) {
+            const botao = event.target.closest(".comunidade");
+
+            if (!botao) {
+                return;
+            }
+
+            document.querySelectorAll(".comunidade").forEach(function(item) {
+                item.classList.remove("ativa");
+            });
+
+            botao.classList.add("ativa");
+
+            nomeComunidade.textContent = botao.dataset.nome;
+
+            // Exibe um aviso demonstrativo ao trocar de comunidade
+            mensagens.innerHTML = "";
+
+            const aviso = document.createElement("p");
+            aviso.className = "mensagemVazia";
+            aviso.textContent = "Você está visualizando a comunidade " + botao.dataset.nome + ".";
+            mensagens.appendChild(aviso);
+        });
+
+
+
+        // Enviar mensagem na interface
+        formularioMensagem.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const texto = campoMensagem.value.trim();
+
+            if (texto === "") {
+                return;
+            }
+
+            // Remove o aviso de comunidade vazia, se existir
+            const aviso = mensagens.querySelector(".mensagemVazia");
+
+            if (aviso) {
+                mensagens.innerHTML = "";
+            }
+
+            const mensagem = document.createElement("div");
+            mensagem.className = "mensagem enviada";
+
+            const autor = document.createElement("span");
+            autor.className = "autorMensagem";
+            autor.textContent = "Você";
+
+            const conteudo = document.createElement("p");
+            conteudo.className = "textoMensagem";
+            conteudo.textContent = texto;
+
+            const horario = document.createElement("span");
+            horario.className = "horarioMensagem";
+
+            horario.textContent = new Date().toLocaleTimeString("pt-BR", {
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+            mensagem.appendChild(autor);
+            mensagem.appendChild(conteudo);
+            mensagem.appendChild(horario);
+
+            mensagens.appendChild(mensagem);
+
+            campoMensagem.value = "";
+            mensagens.scrollTop = mensagens.scrollHeight;
+            campoMensagem.focus();
+        });
+
+        function criar() {
+            window.location.href = "criarComunidades.html";
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
