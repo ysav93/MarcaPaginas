@@ -1,3 +1,7 @@
+<?php
+    include 'cadastro.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -131,42 +135,43 @@
 
     <!-- Formulário de cadastro -->
 
-    <form id="formulario" onsubmit="entrar(event)">
+        <form id="formulario" onsubmit="entrar(event)" method="POST">
 
         <div class="mb-4">
-            <label for="tituloLivro" class="form-label">
-                Nome do Usuario:
+            <label for="nomeUsuario" class="form-label">
+                Nome:
             </label>
-
-            <input type="text" class="form-control" id="tituloLivro" name="tituloLivro" placeholder="Digite o nome do usuario" required>
+            <input type="text" class="form-control" id="nomeUsuario" name="nome" placeholder="Digite o nome do usuario" required>
         </div>
 
+        <div class="mb-4">
+            <label for="nomeUser" class="form-label">
+                Nome de Usuario:
+            </label>
+            <input type="text" class="form-control" id="nomeUser" name="usuario" placeholder="Digite o nome do usuario" required>
+        </div>
 
         <div class="mb-4">
-            <label for="autor" class="form-label">
+            <label for="emailUsuario" class="form-label">
                 Email do usuario:
             </label>
-
-            <input type="text" class="form-control" id="autor" name="autor" placeholder="Digite seu email" required>
+            <input type="text" class="form-control" id="emailUsuario" name="email" placeholder="Digite seu email" required>
         </div>
+
         <div class="mb-3">
             <label for="senha" class="form-label">Senha</label>
             <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" required>
         </div>
 
-
-
-
         <div id="botaoCadastrar">
-            <button type="submit" class="botoes" onclick="entrar()">
+            <button type="submit" name="cadastrar" class="botoes" onclick="entrar()">
                 Cadastrar
             </button>
         </div>
 
     </form>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         function entrar(event) {
