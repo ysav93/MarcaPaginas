@@ -1,0 +1,200 @@
+body {
+    background-color: #fff8e7;
+    margin: 0;
+    padding: 0;
+}
+
+#contorno {
+    background-color: #f8ccd7;
+}
+
+#nome {
+    font-family: "Isometra", serif;
+    color: #751020;
+}
+
+.navbar {
+    padding: 0;
+}
+
+.navbar .container-fluid {
+    padding: 10px 20px;
+}
+
+/* Linha do título e dos botões */
+
+#cabecalhoLendo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 100px 30px 30px;
+}
+
+#titulo {
+    font-family: "Isometra", serif;
+    color: #751020;
+    margin: 0;
+}
+
+/* Botões */
+
+.botoes {
+    width: 105px;
+    height: 50px;
+    border: 2px solid #751020;
+    border-radius: 30px;
+    background-color: #f8ccd7;
+    color: #751020;
+    font-family: "Isometra", serif;
+    cursor: pointer;
+}
+
+.botoes:hover {
+    background-color: #751020;
+    color: white;
+}
+
+.grupoBotoes {
+    display: flex;
+    gap: 10px;
+}
+
+/* Livro */
+
+#livros {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 0 30px;
+}
+
+.imagemLivro {
+    width: 130px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+#detalhesLivro p {
+    margin-bottom: 12px;
+}
+
+/* Barra de progresso */
+
+#progressoLivro {
+    margin: 20px 30px;
+    height: 20px;
+    background-color: #f1dfd1;
+}
+
+#progressoLivro .progress-bar {
+    background-color: #99182a;
+}
+
+@media (max-width: 500px) {
+    #cabecalhoLendo {
+        margin: 90px 15px 25px;
+        gap: 10px;
+    }
+
+    .grupoBotoes {
+        gap: 5px;
+    }
+
+    .botoes {
+        width: auto;
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    #livros {
+        margin: 0 15px;
+        gap: 12px;
+    }
+
+    .imagemLivro {
+        width: 100px;
+        height: 150px;
+    }
+
+    #progressoLivro {
+        margin: 20px 15px;
+    }
+}
+
+/* Barra de pesquisa */
+
+#barraPesquisa {
+    background-color: #fff8e7;
+    padding: 20px 30px;
+    margin-top: 65px;
+}
+
+/* Formulário */
+
+#barraPesquisa form {
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+/* Campo de pesquisa */
+
+#barraPesquisa .form-control {
+    border: 2px solid #f8ccd7;
+    border-radius: 25px;
+    background-color: white;
+    color: #751020;
+    padding: 12px 18px;
+    box-shadow: none;
+}
+
+/* Texto do campo */
+
+#barraPesquisa .form-control::placeholder {
+    color: #9b737b;
+}
+
+/* Efeito ao clicar no campo */
+
+#barraPesquisa .form-control:focus {
+    border-color: #751020;
+    box-shadow: 0 0 5px #f8ccd7;
+}
+
+/* Botão de pesquisa */
+
+.botaoPesquisa {
+    background-color: #f8ccd7;
+    color: #751020;
+    border: 2px solid #751020;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: "Isometra", serif;
+}
+
+/* Efeito ao passar o mouse */
+
+.botaoPesquisa:hover {
+    background-color: #751020;
+    color: white;
+}
+
+/* Ajustes para celular */
+
+@media (max-width: 500px) {
+    #barraPesquisa {
+        padding: 15px;
+    }
+
+    #barraPesquisa form {
+        gap: 8px;
+    }
+
+    .botaoPesquisa {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}

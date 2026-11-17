@@ -1,0 +1,112 @@
+<?php
+    session_start();
+    include ('../BD/conexao.php');
+
+    if (isset($_POST['entrar'])) {
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+
+        $sql = "SELECT id, nome, senha FROM usuario WHERE email = '$email'";
+        $resultado = $conexao->query($sql);
+        $usuario = $resultado->fetch_assoc();
+
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
+            $_SESSION['idUsuario'] = $usuario['id'];
+            $_SESSION['nomeUsuario'] = $usuario['nome'];
+
+            header("Location: ../inicio.php");
+            exit;
+        } else {
+            echo "<script>alert('Email ou senha incorretos!');</script>";
+        }
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tela de Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Isometra&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #fff8e7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #quadrado {
+            background-color: white;
+            border: 2px solid #99182a;
+            border-radius: 15px;
+            padding: 30px;
+            width: 350px;
+            max-width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #entrar {
+            background-color: #99182a;
+            border-color: #99182a;
+            width: 100%;
+        }
+
+        #entrar:hover {
+            background-color: #751020;
+            border-color: #751020;
+        }
+
+        #titulo {
+            font-family: "Isometra", serif;
+            color: #751020;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="quadrado">
+        <h3 class="text-center mb-4" id="titulo">MarcaPáginas</h3>
+
+        <form method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha"
+                    required>
+            </div>
+
+            <button type="submit" name="entrar" class="btn btn-primary" id="entrar">
+                Entrar
+            </button>
+        </form>
+
+    </div>
+    <br>
+    <li class="nav-item">
+        <a class="nav-link" href="telaCadastro.php" style="color: #751020;">Cadastrar usuario</a>
+    </li>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,429 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff8e7;
+    margin: 0;
+    padding: 0;
+    color: #751020;
+    font-family: Arial, sans-serif;
+}
+
+/* Barra de navegação principal */
+
+#contorno {
+    background-color: #f8ccd7;
+    border-bottom: 2px solid #751020;
+}
+
+.navbar {
+    padding: 0;
+}
+
+.navbar .container-fluid {
+    padding: 10px 25px;
+}
+
+#nome {
+    font-family: "Isometra", serif;
+    color: #751020;
+    font-size: 25px;
+}
+
+.navbar .nav-link {
+    color: #751020;
+}
+
+.navbar .nav-link:hover {
+    color: #a8324a;
+}
+
+/* Área principal */
+
+#paginaComunidades {
+    display: flex;
+    gap: 25px;
+    max-width: 1400px;
+    margin: 100px auto 30px;
+    padding: 0 25px;
+    min-height: 75vh;
+}
+
+/* Lista lateral de comunidades */
+
+#lateralComunidades {
+    width: 280px;
+    min-width: 240px;
+    background-color: white;
+    border: 2px solid #751020;
+    border-radius: 15px;
+    overflow: hidden;
+    align-self: flex-start;
+}
+
+#cabecalhoComunidades {
+    background-color: #f8ccd7;
+    padding: 18px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #751020;
+    gap: 10px;
+}
+
+#cabecalhoComunidades h2 {
+    font-family: "Isometra", serif;
+    font-size: 20px;
+    margin: 0;
+}
+
+/* Botão de criar comunidade */
+
+#botaoAdicionar {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border: 2px solid #751020;
+    border-radius: 50%;
+    background-color: #fff8e7;
+    color: #751020;
+    font-size: 27px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+#botaoAdicionar:hover {
+    background-color: #751020;
+    color: white;
+}
+
+/* Botões das comunidades */
+
+#listaComunidades {
+    padding: 10px;
+}
+
+.comunidade {
+    width: 100%;
+    display: block;
+    text-align: left;
+    padding: 14px 12px;
+    margin-bottom: 6px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #751020;
+    cursor: pointer;
+    transition: 0.2s;
+    overflow-wrap: anywhere;
+}
+
+.comunidade:hover {
+    background-color: #fff0f3;
+}
+
+.comunidade.ativa {
+    background-color: #f8ccd7;
+    font-weight: bold;
+    border-left: 4px solid #751020;
+}
+
+.iconeComunidade {
+    display: inline-flex;
+    width: 35px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    background-color: #fff8e7;
+    border-radius: 50%;
+    font-size: 17px;
+    vertical-align: middle;
+}
+
+/* Área do chat */
+
+#areaChat {
+    flex: 1;
+    min-width: 0;
+    background-color: white;
+    border: 2px solid #751020;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 550px;
+}
+
+/* Cabeçalho do chat */
+
+#cabecalhoChat {
+    background-color: #f8ccd7;
+    padding: 18px 22px;
+    border-bottom: 2px solid #751020;
+}
+
+#nomeComunidade {
+    font-family: "Isometra", serif;
+    font-size: 25px;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+#descricaoComunidade {
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: #751020;
+}
+
+/* Mensagens */
+
+#mensagens {
+    flex: 1;
+    min-height: 350px;
+    max-height: 600px;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #fffdf9;
+}
+
+.mensagem {
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    overflow-wrap: anywhere;
+}
+
+.mensagem.recebida {
+    align-self: flex-start;
+}
+
+.mensagem.enviada {
+    align-self: flex-end;
+}
+
+.autorMensagem {
+    font-size: 12px;
+    color: #751020;
+    margin: 0 8px 5px;
+    font-weight: bold;
+}
+
+.textoMensagem {
+    padding: 12px 15px;
+    margin: 0;
+    border-radius: 15px;
+    color: #3d2529;
+    line-height: 1.5;
+}
+
+.recebida .textoMensagem {
+    background-color: #f1dfd1;
+    border-bottom-left-radius: 3px;
+}
+
+.enviada .textoMensagem {
+    background-color: #f8ccd7;
+    border-bottom-right-radius: 3px;
+}
+
+.horarioMensagem {
+    font-size: 10px;
+    color: #8b6b70;
+    margin: 4px 8px 0;
+}
+
+/* Campo para enviar mensagens */
+
+#formularioMensagem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #e7c4ca;
+}
+
+#campoMensagem {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid #d9a3ae;
+    border-radius: 25px;
+    background-color: #fffdf9;
+    padding: 12px 18px;
+    outline: none;
+}
+
+#campoMensagem:focus {
+    border-color: #751020;
+    box-shadow: 0 0 0 3px rgba(248, 204, 215, 0.5);
+}
+
+#botaoEnviar {
+    padding: 11px 22px;
+    border: 2px solid #751020;
+    border-radius: 25px;
+    background-color: #f8ccd7;
+    color: #751020;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#botaoEnviar:hover {
+    background-color: #751020;
+    color: white;
+}
+
+.mensagemVazia {
+    text-align: center;
+    color: #9b737b;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Ajustes para telas menores */
+
+@media (max-width: 768px) {
+    #paginaComunidades {
+        flex-direction: column;
+        margin-top: 90px;
+        padding: 0 15px;
+        gap: 15px;
+    }
+
+    #lateralComunidades {
+        width: 100%;
+        min-width: 0;
+    }
+
+    #listaComunidades {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+    }
+
+    .comunidade {
+        width: auto;
+        min-width: 155px;
+        margin-bottom: 0;
+        white-space: nowrap;
+    }
+
+    #areaChat {
+        width: 100%;
+        min-height: 500px;
+    }
+
+    #mensagens {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 400px) {
+    #nomeComunidade {
+        font-size: 21px;
+    }
+
+    #cabecalhoChat {
+        padding: 15px;
+    }
+
+    #mensagens {
+        padding: 12px;
+    }
+
+    #formularioMensagem {
+        padding: 10px;
+        gap: 6px;
+    }
+
+    #botaoEnviar {
+        padding: 10px 13px;
+    }
+}
+
+/* Barra de pesquisa */
+
+#barraPesquisa {
+    background-color: #fff8e7;
+    padding: 20px 30px;
+    margin-top: 65px;
+}
+
+/* Formulário */
+
+#barraPesquisa form {
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+/* Campo de pesquisa */
+
+#barraPesquisa .form-control {
+    border: 2px solid #f8ccd7;
+    border-radius: 25px;
+    background-color: white;
+    color: #751020;
+    padding: 12px 18px;
+    box-shadow: none;
+}
+
+/* Texto do campo */
+
+#barraPesquisa .form-control::placeholder {
+    color: #9b737b;
+}
+
+/* Efeito ao clicar no campo */
+
+#barraPesquisa .form-control:focus {
+    border-color: #751020;
+    box-shadow: 0 0 5px #f8ccd7;
+}
+
+/* Botão de pesquisa */
+
+.botaoPesquisa {
+    background-color: #f8ccd7;
+    color: #751020;
+    border: 2px solid #751020;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: "Isometra", serif;
+}
+
+/* Efeito ao passar o mouse */
+
+.botaoPesquisa:hover {
+    background-color: #751020;
+    color: white;
+}
+
+/* Ajustes para celular */
+
+@media (max-width: 500px) {
+    #barraPesquisa {
+        padding: 15px;
+    }
+
+    #barraPesquisa form {
+        gap: 8px;
+    }
+
+    .botaoPesquisa {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
