@@ -1,0 +1,152 @@
+body {
+    background-color: #fff8e7;
+    margin: 0;
+    padding: 0;
+}
+
+/* Título */
+#titulo {
+    font-family: "Isometra", serif;
+    color: #751020;
+    font-size: 200px;
+    margin: 0;
+}
+
+/* Dados do livro */
+#dados {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 70px auto;
+    padding: 35px;
+    background-color: #fffdf7;
+    border: 2px solid #f8ccd7;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(117, 16, 32, 0.10);
+}
+
+/* Capa */
+#capaLivro {
+    flex-shrink: 0;
+}
+
+#capaLivro img {
+    width: 330px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Informações */
+#informacoes {
+    font-family: "Isometra", serif;
+    color: #751020;
+    flex: 1;
+}
+
+#informacoes h2 {
+    font-size: 35px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f8ccd7;
+}
+
+#informacoes p {
+    font-size: 20px;
+    margin: 19px 0;
+}
+
+/* Avaliação por estrelas */
+#avaliacao {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.estrelas {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.estrela {
+    font-size: 45px;
+    color: #ccc;
+}
+
+.estrela.selecionada {
+    color: #ffc107;
+}
+
+/* Botão */
+#acoes {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.botoes {
+    height: 50px;
+    padding: 5px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid #751020;
+    border-radius: 30px;
+    background-color: #f8ccd7;
+    color: #751020;
+    font-family: "Isometra", serif;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.botoes:hover {
+    background-color: #751020;
+    color: white;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+
+    #titulo {
+        font-size: 22px;
+    }
+
+    #dados {
+        flex-direction: column;
+        margin: 90px 15px 20px;
+        padding: 20px;
+        gap: 25px;
+    }
+
+    #capaLivro img {
+        width: 180px;
+        height: 270px;
+    }
+
+    #informacoes {
+        width: 100%;
+    }
+
+    #informacoes h2 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    #informacoes p {
+        font-size: 16px;
+    }
+
+    .estrela {
+        font-size: 38px;
+    }
+
+    .botoes {
+        font-size: 15px;
+    }
+}
