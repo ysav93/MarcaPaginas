@@ -1,8 +1,8 @@
 <?php
     session_start();
-    include('../BD/conexao.php');
+    include ('../BD/conexao.php');
 
-    $usuarioId = (int) $_SESSION['usuario_id'];
+    $usuarioId = (int) $_SESSION['idUsuario'];
     $sql = "SELECT * FROM livro WHERE usuario_id = $usuarioId";
     $resultado = mysqli_query($conexao, $sql);
 ?>
@@ -46,8 +46,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../Grupos/grupos.html">Grupos</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="minhaBiblioteca.php">Minha biblioteca</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Usuário/dadosUsuario.php">Meu perfil</a>
                     </li>
                 </ul>
             </div>
@@ -55,12 +58,9 @@
     </nav>
     <nav id="barraPesquisa">
         <div class="container-fluid">
-            <form class="d-flex" role="search">
-                <input class="form-control" type="search" placeholder="Pesquisar livros..." aria-label="Pesquisar livros">
-
-                <button class="botaoPesquisa" type="submit">
-                Pesquisar
-            </button>
+            <form method="post" action="../pesquisa.php" class="d-flex" role="search">
+                <input name="nomeLivro" class="form-control" type="search" placeholder="Pesquisar livros..." aria-label="Pesquisar livros">
+                <button name="pesquisar" class="botaoPesquisa" type="submit">Pesquisar</button>
             </form>
         </div>
     </nav>
@@ -72,8 +72,7 @@
             <button type="button" class="botoes" onclick="queroLer()">Quero ler</button>
             <button type="button" class="botoes" onclick="lidos()">Lido</button>
             <button type="button" class="botoes" onclick="lendo()">Lendo</button>
-            <button type="button" class="botoes" onclick="cadastrar()">Cadastrar Livro</button>
-                <button type="button" class="botoes" onclick="atualizar()">Atualizar</button>
+            <button type="button" class="botoes" onclick="cadastrar()">Novo Livro</button>
         </div>
     </div>
 
@@ -85,15 +84,20 @@
                     $titulo = htmlspecialchars($livro['nome']);
                     $id = $livro['id'];
 
-                    echo '
-                    <div class="card-livro text-center">
-                        <img src="' . $capa . '" class="imagemLivro" alt="Capa de ' . $titulo . '">
-                        <h5 class="mt-2">' . $titulo . '</h5>
-                        <div class="acoes">
-                            <a href="editar.php?id=' . $id . '" class="btn btn-secondary btn-sm">Editar</a>
-                            <a href="excluir.php?id=' . $id . '" class="btn btn-danger btn-sm">Excluir</a>
-                        </div>
-                    </div>';
+                    echo "
+                        <div class='card-livro text-center'>
+                            <a href='dadosMeusLivros.php?id=$id'>
+                                <img src='$capa' class='imagemLivro' alt='Capa de $titulo'>
+                            </a>
+                            <p class='mt-2 mb-1'><strong>$titulo</strong></p>
+                            <div class='acoes mb-2'>
+                                <a href='Livros/atualizar.php?id=$id' class='botoes'>Editar</a>
+                                <a href='Livros/excluir.php?id=$id' class='botoes'
+                                    onclick=\"return confirm('Tem certeza que deseja excluir este livro?');\">
+                                    Excluir</a>
+                            </div>
+                            
+                        </div>";
                 }
             } else {
                 echo '<p>Nenhum livro encontrado.</p>';
@@ -119,10 +123,6 @@
 
         function cadastrar() {
             window.location.href = "../Livros/telaCadastro.php";
-        }
-
-        function atualizar() {
-            window.location.href = "../Livros/atualizar.php";
         }
     </script>
 
