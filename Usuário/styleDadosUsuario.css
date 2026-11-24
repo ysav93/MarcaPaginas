@@ -1,0 +1,119 @@
+body {
+    background-color: #fff8e7;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+#contorno {
+    background-color: #f8ccd7;
+}
+
+#nome {
+    font-family: "Isometra", serif;
+    color: #751020;
+}
+
+.navbar {
+    padding: 0;
+}
+
+.navbar .container-fluid {
+    padding: 10px 20px;
+}
+
+/* Cabeçalho */
+
+#titulo {
+    font-family: "Isometra", serif;
+    color: #751020;
+    font-size: 100px;
+    margin: 0;
+}
+
+/* Botões */
+
+.botoes {
+    width: 105px;
+    height: 50px;
+    border: 2px solid #751020;
+    border-radius: 30px;
+    background-color: #f8ccd7;
+    color: #751020;
+    font-family: "Isometra", serif;
+    cursor: pointer;
+}
+
+.botoes:hover {
+    background-color: #751020;
+    color: white;
+}
+
+#acoes {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+#acoes .botoes {
+    font-size: 14px;
+    border-radius: 20px;
+    text-align: center;
+    padding: 0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dados do usuário */
+
+#dados {
+    max-width: 750px;
+    margin: 120px auto 30px;
+    padding: 35px;
+    background-color: #fffdf7;
+    border: 2px solid #f8ccd7;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(117, 16, 32, 0.10);
+}
+
+/* Informações */
+#informacoes {
+    font-family: "Isometra", serif;
+    color: #751020;
+}
+
+#informacoes h2 {
+    font-size: 32px;
+    text-align: center;
+    margin: 0 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f8ccd7;
+}
+
+#informacoes p {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+#informacoes strong {
+    color: #751020;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    #dados {
+        margin: 100px 15px 20px;
+        padding: 20px;
+    }
+
+    #informacoes h2 {
+        font-size: 23px;
+    }
+
+    #informacoes p {
+        font-size: 15px;
+        margin: 16px 0;
+    }
+}
