@@ -43,6 +43,25 @@ body {
     color: white;
 }
 
+.acoes {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.acoes .botoes {
+    width: 65px;
+    height: 30px;
+    font-size: 11px;
+    text-align: center;
+    border-radius: 20px;
+    padding: 0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Título e botões na mesma linha */
 
 #cabecalhoLidos {
