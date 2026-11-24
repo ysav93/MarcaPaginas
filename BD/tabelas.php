@@ -43,7 +43,7 @@
                      ON UPDATE NO ACTION)
                      ENGINE=InnoDB';
 
-    $sqlUsuarioEntraComunidade = 'CREATE TABLE IF NOT EXISTS EntrePaginas.Usuario_Entra_Comunidade (
+    $sqlusuarioEntraComunidade = 'CREATE TABLE IF NOT EXISTS EntrePaginas.Usuario_Entra_Comunidade (
      comunidade_idComunidade INT NOT NULL,
                         Usuario_IdUsuario INT NOT NULL,
                                   PRIMARY KEY (comunidade_idComunidade, Usuario_IdUsuario),
@@ -55,7 +55,7 @@
 
 
     
-    $sqlGrupo = 'CREATE TABLE IF NOT EXISTS EntrePaginas.grupo (
+    $sqlgrupo = 'CREATE TABLE IF NOT EXISTS EntrePaginas.grupo (
                  id INT NOT NULL AUTO_INCREMENT,
                  descricao TEXT NOT NULL,
                  nome TEXT NOT NULL,
@@ -70,7 +70,7 @@
                  ENGINE = InnoDB';
 
 
-    $sqlUsuarioEntraGrupo = 'CREATE TABLE IF NOT EXISTS EntrePaginas.Usuario_Entra_Grupo (
+    $sqlusuarioEntraGrupo = 'CREATE TABLE IF NOT EXISTS EntrePaginas.Usuario_Entra_Grupo (
                              Usuario_IdUsuario INT NOT NULL,
                              Grupo_idGrupo INT NOT NULL,
                              PRIMARY KEY (Usuario_IdUsuario, Grupo_idGrupo),
@@ -85,6 +85,10 @@
     mysqli_query($conexao, $sqlUsuario);
     mysqli_query($conexao, $sqlLivro);
     mysqli_query($conexao, $sqlcomunidades);
-    mysqli_query($conexao, $sqlUsuarioEntraComunidade);
-    mysqli_query($conexao, $sqlGrupo);
-    mysqli_query($conexao, $sqlUsuarioEntraGrupo);
+    mysqli_query($conexao, $sqlusuarioEntraComunidade);
+    mysqli_query($conexao, $sqlgrupo);
+    mysqli_query($conexao, $sqlusuarioEntraGrupo);
+
+
+
+?>
