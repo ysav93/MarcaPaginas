@@ -69,6 +69,7 @@ body {
     width: 65px;
     height: 30px;
     font-size: 11px;
+    text-align: center;
     border-radius: 20px;
     padding: 0;
     text-decoration: none;
@@ -79,7 +80,7 @@ body {
 
 /* Livro */
 
-#lendo {
+#atualizacao {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -125,7 +126,7 @@ body {
         font-size: 12px;
     }
 
-    #lendo {
+    #atuazacao {
         margin: 0 15px;
         gap: 12px;
     }
