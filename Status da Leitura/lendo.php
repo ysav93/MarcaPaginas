@@ -1,15 +1,23 @@
 <?php
     session_start();
-    include('../BD/conexao.php');
+    include ('../BD/conexao.php');
 
     if (!isset($_SESSION['idUsuario'])) {
-        echo '<script>alert(Faça o login primeiro)</script>';
-        header("Location: ../Usuário/login.php");
+        echo "<script>
+                alert('Faça o login primeiro');
+                window.location.href = '../Usuário/login.php';
+              </script>";
         exit;
+    } else {
+        $usuarioId = $_SESSION['idUsuario'];
     }
 
     // Busca apenas os livros marcados como 'lendo'
-    $sql = "SELECT * FROM livro WHERE statusLivro = 'lendo'";
+    $sql = "SELECT * 
+            FROM  
+                livro INNER JOIN usuario_acompanha_livro ON (id = livro_id) 
+            WHERE 
+                statusLivro = 'lendo' AND usuario_acompanha_livro.usuario_id = $usuarioId";
     $resultado = mysqli_query($conexao, $sql);
 ?>
 
@@ -44,7 +52,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="../inicio.html">Início</a>
+                        <a class="nav-link active" href="../inicio.php">Início</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../Comunidades/comunidades.html">Comunidades</a>
@@ -52,8 +60,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../Grupos/grupos.html">Grupos</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="../Biblioteca/minhaBiblioteca.html">Minha biblioteca</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Usuário/dadosUsuario.php">Meu perfil</a>
                     </li>
                 </ul>
             </div>
@@ -62,9 +73,9 @@
 
     <nav id="barraPesquisa">
         <div class="container-fluid">
-            <form class="d-flex" role="search">
-                <input class="form-control" type="search" placeholder="Pesquisar livros..." aria-label="Pesquisar livros">
-                <button class="botaoPesquisa" type="submit">Pesquisar</button>
+            <form method="post" action="../pesquisa.php" class="d-flex" role="search">
+                <input name="nomeLivro" class="form-control" type="search" placeholder="Pesquisar livros..." aria-label="Pesquisar livros">
+                <button name="pesquisar" class="botaoPesquisa" type="submit">Pesquisar</button>
             </form>
         </div>
     </nav>
@@ -76,8 +87,7 @@
         <div class="grupoBotoes">
             <button type="button" class="botoes" onclick="queroLer()">Quero ler</button>
             <button type="button" class="botoes" onclick="lidos()">Lidos</button>
-            <button type="button" class="botoes" onclick="cadastrar()">Cadastrar Livro</button>
-            <button type="button" class="botoes" onclick="atualizar()">Atualizar</button>
+            <button type="button" class="botoes" onclick="cadastrar()">Novo Livro</button>
         </div>
     </div>
 
@@ -90,7 +100,7 @@
                     $titulo = htmlspecialchars($livro['nome']);
                     $id = $livro['id'];
                     $pageTotal = (int) $livro['numeroDePaginas'];
-                    $pageConcluidas = (int) $livro['paginasLidas'];
+                    $pageConcluidas = (int) $livro['numeroDePaginasConcluidas'];
                 
                     if ($pageTotal > 0) {
                         $porcentagemConcluida = round(($pageConcluidas / $pageTotal) * 100);
@@ -100,12 +110,15 @@
 
                     echo "
                         <div class='card-livro text-center'>
-                            <img src='$capa' class='imagemLivro' alt='Capa de $titulo'>
-                            <p class='mt-2 mb-1'><strong>Título: $titulo</strong></p>
+                            <a href='../Biblioteca/dadosMeusLivros.php?id=$id'>
+                                <img src='$capa' class='imagemLivro' alt='Capa de $titulo'>
+                            </a>
+                            <p class='mt-2 mb-1'><strong>$titulo</strong></p>
                             <div class='acoes mb-2'>
-                                <a href='../Livros/atualizar.php?id=$id' class='btn btn-secondary btn-sm'>Editar</a>
-                                <a href='../Livros/excluir.php?id=$id' class='btn btn-danger btn-sm' 
-                                    onclick='return confirm('Tem certeza que deseja excluir este livro?');'>Excluir</a>
+                                <a href='../Livros/atualizar.php?id=$id' class='botoes'>Editar</a>
+                                <a href='../Livros/excluir.php?id=$id' class='botoes'
+                                    onclick=\"return confirm('Tem certeza que deseja excluir este livro?');\">
+                                    Excluir</a>
                             </div>
                             <div class='progress progressoLivro' role='progressbar' aria-label='Progresso de leitura' aria-valuenow='$porcentagemConcluida' aria-valuemin='0' aria-valuemax='100'>
                                 <div class='progress-bar' style='width: $porcentagemConcluida%'>$porcentagemConcluida%</div>
@@ -131,10 +144,6 @@
 
         function cadastrar() {
             window.location.href = "../Livros/telaCadastro.php";
-        }
-
-        function atualizar() {
-            window.location.href = "../Livros/atualizar.php";
         }
     </script>
 
