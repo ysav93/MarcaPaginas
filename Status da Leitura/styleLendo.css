@@ -43,6 +43,43 @@ body {
     color: white;
 }
 
+.acoes {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.acoes .botoes {
+    width: 65px;
+    height: 30px;
+    font-size: 11px;
+    text-align: center;
+    border-radius: 20px;
+    padding: 0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Barra de progresso da leitura */
+.progressoLivro {
+    width: 150px;
+    height: 16px;
+    margin: 10px auto;
+    background-color: #f1dfd1;
+    border: 1px solid #e0c7b8;
+}
+
+/* Parte preenchida da barra */
+.progressoLivro .progress-bar {
+    background-color: #99182a;
+    color: white;
+    font-size: 12px;
+    line-height: 16px;
+    transition: width 0.4s ease;
+}
+
 /* Título e botões na mesma linha */
 
 #cabecalhoLidos {
@@ -76,86 +113,6 @@ body {
 
 #detalhesLivro p {
     margin-bottom: 12px;
-}
-
-/* Avaliação abaixo dos detalhes do livro */
-
-#avaliacao {
-    text-align: left;
-    margin-top: 15px;
-}
-
-.estrelas {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    gap: 5px;
-}
-
-.estrelas input {
-    display: none;
-}
-
-.estrelas label {
-    font-size: 40px;
-    color: #ccc;
-    cursor: pointer;
-}
-
-/* Cor das estrelas selecionadas */
-
-.estrelas input:checked~label {
-    color: #ffc107;
-}
-
-/* Cor das estrelas ao passar o mouse */
-
-.estrelas label:hover,
-.estrelas label:hover~label {
-    color: #ffc107;
-}
-
-/* Responsividade */
-
-@media (max-width: 500px) {
-    #cabecalhoLidos {
-        margin: 90px 15px 25px;
-        gap: 10px;
-    }
-
-    .grupoBotoes {
-        gap: 5px;
-    }
-
-    .botoes {
-        width: auto;
-        height: 42px;
-        padding: 5px 10px;
-        font-size: 12px;
-    }
-
-    #lendo {
-        margin: 0 15px;
-        gap: 12px;
-    }
-
-    .imagemLivro {
-        width: 100px;
-        height: 150px;
-    }
-
-    #detalhesLivro p {
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-
-    .estrelas {
-        gap: 2px;
-    }
-
-    .estrelas label {
-        font-size: 32px;
-    }
 }
 
 /* Barra de pesquisa */
