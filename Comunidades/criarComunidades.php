@@ -1,3 +1,46 @@
+<?php
+ session_start();
+    include ('../BD/conexao.php');
+
+    if(!isset($_SESSION['idUsuario'])){
+header("Location:../usuarios/login.php");
+exit;
+    }
+    if(isset($_POST['criar'])){
+        $nome=$_POST['descricao'];
+        $convite=$_POST['conviteGeral'];
+
+        $idUsuario=$_SESSION['idUsuario'];
+
+        $sql="INSERT INTO comunidades
+        (nome,descricao,conviteGeral,Usuario_IdUsuario)
+        VALUES (?,?,?,?)";
+
+        $stmt=$conexao -> prepare($sql);
+        $stmt -> bind_param("ssii",$nome,$descricao,$convite,$idUsuario);
+
+        if($stmt->execute()){
+          
+        $idComunidade = $conexao->insert_id;
+
+       
+        $sql2 = "INSERT INTO Usuario_Entra_Comunidade
+                 (comunidade_idComunidade, Usuario_IdUsuario)
+                 VALUES (?, ?)";
+
+        $stmt2 = $conexao->prepare($sql2);
+        $stmt2->bind_param("ii", $idComunidade, $idUsuario);
+        $stmt2->execute();
+
+        header("Location: listar.php");
+        exit;
+
+    }  
+        }
+    
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,14 +168,19 @@
 
     <!-- Formulário de cadastro -->
 
-    <form id="formulario">
+    <form id="formulario" method="POST" action="criarComunidades.php">
 
         <div class="mb-4">
             <label for="tituloLivro" class="form-label">
                 Nome da comunidade
             </label>
 
-            <input type="text" class="form-control" id="tituloLivro" name="tituloLivro" placeholder="Digite o nome da comunidade" required>
+            <input type="text" 
+            class="form-control"
+             id="nome"
+              name="nome"
+               placeholder="Digite o nome da comunidade" 
+               required>
         </div>
 
         <div class="mb-4">
@@ -140,21 +188,31 @@
                 URL da imagem da comunidade:
             </label>
 
-            <input type="url" class="form-control" id="urlCapa" name="urlCapa" placeholder="https://exemplo.com/capa.jpg" required>
+            <input type="url"
+             class="form-control"
+              id="imagem"
+               name="imagem" 
+               placeholder="https://exemplo.com/capa.jpg" required>
         </div>
 
         <div class="mb-4">
             <label for="autor" class="form-label">
                 breve descrição:
             </label>
-
-            <input type="text" class="form-control" id="autor" name="autor" placeholder="Digite sua descrição" required>
+<textarea
+ class="form-control"
+  id="descricao"
+   name="descricao"
+    placeholder="Digite sua descrição"
+     required
+></textarea>
+            
         </div>
 
 
 
         <div id="botaoCadastrar">
-            <button type="submit" class="botoes" onclick="cadastrar()">
+            <button type="submit" class="botoes" >
                 Criar
             </button>
         </div>
@@ -163,9 +221,8 @@
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-    function cadastrar() {
-        window.history.back;
-    }
+   
 </script>
 
 </html>
+ 
