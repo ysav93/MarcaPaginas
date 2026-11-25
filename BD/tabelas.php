@@ -29,7 +29,7 @@
                  ON UPDATE NO ACTION)
                  ENGINE = InnoDB';
 
-$sqlAcompanhamento = 'CREATE TABLE IF NOT EXISTS EntrePaginas.usuario_acompanha_livro (
+    $sqlAcompanhamento = 'CREATE TABLE IF NOT EXISTS EntrePaginas.usuario_acompanha_livro (
                           livro_id INT NOT NULL,
                           usuario_id INT NOT NULL,
                           numeroDePaginasConcluidas INT NOT NULL,
