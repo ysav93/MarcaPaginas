@@ -33,19 +33,21 @@
         $dataHora = (new DateTimeImmutable('now', new DateTimeZone('UTC')))->format('Y-m-d H:i:s');
 
         $sqlLivro = "UPDATE livro SET
-                     nome = '$nome',
-                     autor = '$autor',
-                     editora = '$editora',
-                     capa = '$capa',
-                     numeroDePaginas = '$numeroPaginas',
-                     avaliacaoEstrelas = '$estrelas'
-                     WHERE id = $id AND usuario_id = $usuarioId";
+                         nome = '$nome',
+                         autor = '$autor',
+                         editora = '$editora',
+                         capa = '$capa',
+                         numeroDePaginas = '$numeroPaginas'
+                     WHERE 
+                         id = $id AND usuario_id = $usuarioId";
 
         $sqlAcompanhamento = "UPDATE usuario_acompanha_livro SET
-                              statusLivro = '$statusLivro',
-                              numeroDePaginasConcluidas = '$paginasLidas',
-                              dataHoraAtualizacao = '$dataHora'
-                              WHERE livro_id = $id AND usuario_id = $usuarioId";
+                                  statusLivro = '$statusLivro',
+                                  numeroDePaginasConcluidas = '$paginasLidas',
+                                  dataHoraAtualizacao = '$dataHora',
+                                  avaliacaoEstrelas = '$estrelas'
+                              WHERE 
+                                  livro_id = $id AND usuario_id = $usuarioId";
 
         if ($conexao->query($sqlLivro) && $conexao->query($sqlAcompanhamento)) {
             // 5. Volta para a biblioteca após salvar o livro
