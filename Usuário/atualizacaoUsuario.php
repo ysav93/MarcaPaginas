@@ -3,9 +3,11 @@
     include ('../BD/conexao.php');
 
     // Impede cadastrar livro se ninguém estiver logado
-    if (!isset($_SESSION['idUsuario'])) {
-        echo '<script>alert(Faça o login primeiro)</script>';
-        header("Location: ../Usuário/login.php");
+   if (!isset($_SESSION['idUsuario'])) {
+        echo "<script>
+                alert('Faça o login primeiro');
+                window.location.href = '../Usuário/login.php';
+              </script>";
         exit;
     }
 
