@@ -14,7 +14,14 @@
 
     $id = $_GET['id'];
 
-    $sql = "SELECT * FROM livro WHERE id = $id";
+    $sql = "SELECT 
+                *, (SELECT AVG(avaliacaoEstrelas)
+                    FROM usuario_acompanha_livro
+                    WHERE livro_id = livro.id) AS media
+            FROM 
+                livro
+            WHERE 
+                id = $id";
     $resultado = mysqli_query($conexao, $sql);
 
     if (mysqli_num_rows($resultado) > 0) {
