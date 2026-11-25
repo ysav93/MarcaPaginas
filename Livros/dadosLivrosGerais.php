@@ -15,9 +15,12 @@
     $id = $_GET['id'];
 
     $sql = "SELECT 
-                *, (SELECT AVG(avaliacaoEstrelas)
-                    FROM usuario_acompanha_livro
-                    WHERE livro_id = livro.id) AS media
+                *, (SELECT 
+                        AVG(avaliacaoEstrelas)
+                    FROM 
+                        usuario_acompanha_livro
+                    WHERE 
+                        livro_id = livro.id) AS media
             FROM 
                 livro
             WHERE 
@@ -32,8 +35,12 @@
         $editora = htmlspecialchars($livro['editora']);
         $capa = htmlspecialchars($livro['capa']);
         $numeroPaginas = htmlspecialchars($livro['numeroDePaginas']);
-        $estrelas = (int) $livro['avaliacaoEstrelas'];
         $id = $livro['id'];
+        if ($livro['media'] !== NULL) {
+            $estrelas = (float) $livro['media'];
+        } else {
+            $estrelas = 0;
+        }
 
     } else {
         echo "Livro não encontrado.";
@@ -67,8 +74,10 @@
                 <div class="estrelas">
                     <?php
                         for ($i = 1; $i <= 5; $i++) {
-                            if ($i <= $estrelas) {
+                            if ($i <= floor($estrelas)) {
                                 echo '<span class="estrela selecionada">&#9733;</span>';
+                            } else if ($i - 0.5 <= $estrelas) {
+                                echo '<span class="estrela metade">&#9733;</span>';
                             } else {
                                 echo '<span class="estrela">&#9733;</span>';
                             }
