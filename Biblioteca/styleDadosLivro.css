@@ -79,6 +79,13 @@ body {
     color: #ffc107;
 }
 
+.estrela.metade {
+    background: linear-gradient(to right, #ffc107 50%, #ccc 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 /* Botão */
 #acoes {
     display: flex;
