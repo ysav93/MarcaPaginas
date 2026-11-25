@@ -24,19 +24,19 @@
         $email = htmlspecialchars($usuario['email']);
 
         // Livros lidos
-        $sql = "SELECT COUNT(*) AS total FROM usuario_acompanha_livro WHERE usuario_id = $usuarioId AND statusLivro = 'lido'";
+        $sql = "SELECT COUNT(livro_id) AS total FROM usuario_acompanha_livro WHERE usuario_id = $usuarioId AND statusLivro = 'lido'";
         $resultado = mysqli_query($conexao, $sql);
         $quantidade = mysqli_fetch_assoc($resultado);
         $lidos = $quantidade['total'];
 
         // Livros que está lendo
-        $sql = "SELECT COUNT(*) AS total FROM usuario_acompanha_livro WHERE usuario_id = $usuarioId AND statusLivro = 'lendo'";
+        $sql = "SELECT COUNT(livro_id) AS total FROM usuario_acompanha_livro WHERE usuario_id = $usuarioId AND statusLivro = 'lendo'";
         $resultado = mysqli_query($conexao, $sql);
         $quantidade = mysqli_fetch_assoc($resultado);
         $lendo = $quantidade['total'];
 
         // Livros que quer ler
-        $sql = "SELECT COUNT(*) AS total FROM usuario_acompanha_livro WHERE usuario_id = $usuarioId AND statusLivro = 'queroLer'";
+        $sql = "SELECT COUNT(livro_id) AS total FROM usuario_acompanha_livro WHERE usuario_id = $usuarioId AND statusLivro = 'queroLer'";
         $resultado = mysqli_query($conexao, $sql);
         $quantidade = mysqli_fetch_assoc($resultado);
         $queroLer = $quantidade['total'];
